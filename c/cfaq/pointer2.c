@@ -1,34 +1,40 @@
 #include <stdio.h>
 
-// Declare fptr_t as pointer to function (float) returning pointer to function (char) returning int
-//
-// int(*(*fptr_t)(float))(char) 
-//
+int main() {
 
-main()
-{
- const int x=0;
- const int *p;
- //int *p;
+	// const int
+	int constint = 10;
+	// constint = 1; // error: assignment of read-only variable ‘constint’
 
- p=&x;
- func(p);
- //*p=55;
+	// This is a pointer to a constant int.
+	// You cannot change the value pointed by ptr, but you can change the pointer itself
+	const int *ptr2const;
+	ptr2const = &constint;
+	// *ptr2const = 1; // error: assignment of read-only location ‘*ptr2const’
 
- printf("x=%d\n", x);
- 
- /*****************************/
+	// This is a constant pointer to non-constant int.
+	// You cannot change the pointer p, but can change the value pointed by ptr.
+	int val = 10;
+	int * const constptr = &val;
+	// constptr = 0x1000; // error: assignment of read-only variable ‘constptr’
+	*constptr = 20;
 
- int *intptr = 0x1000;
- void *voidptr=intptr;
+	// This is a constant pointer to constant int.
+	// You can neither change the value pointed by ptr nor the pointer ptr.
+	int val1 = 10;
+	const int * const constptr2constint = &val1;
+	// constptr2constint = 0x1000; //error: assignment of read-only variable ‘constptr2constint’
+	// *constptr2constint = 20; // error: assignment of read-only location ‘*constptr2constint’
 
- intptr++;  //Increments by 4 bytes
- voidptr++; //Increments by 1 byte
+	/*****************************/
 
- printf("intptr=%p, voidptr=%p\n", intptr, voidptr);
-}
+	int *intptr = (int *) 0x1000;
+	void *voidptr = intptr;
 
-func(int *p)
-{
- *p=55;
+	intptr++;  //Increments by 4 bytes
+	voidptr++; //Increments by 1 byte
+
+	printf("intptr=%p, voidptr=%p\n", intptr, voidptr);
+
+	return 0;
 }

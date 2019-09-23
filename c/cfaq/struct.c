@@ -12,7 +12,15 @@ typedef struct stu {
 	struct stu *right;
 } Node; //Node is new data type
 
-main() {
+void func(struct demo *d) {
+
+	printf("In %s, d->i=%d, d->name=%s\n", __func__, d->i, d->name);
+	d->i = 3;
+	d->name[0] += 32;
+}
+
+int main() {
+
 	struct demo d;
 	d.i = 2;
 	strcpy(d.name, "Vilas");
@@ -24,11 +32,7 @@ main() {
 	Node n, *ptr;
 	printf("size of (Node)=%lu, (n)=%lu, (*ptr)=%lu\n", sizeof(Node), sizeof(n),
 			sizeof(*ptr));
+
+	return 0;
 }
 
-func(struct demo *d) {
-	printf("In %s, d->i=%d, d->name=%s\n", __func__, d->i, d->name);
-
-	d->i = 3;
-	d->name[0] += 32;
-}
