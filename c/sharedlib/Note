@@ -1,0 +1,8 @@
+gcc -c -Wall -Werror -fpic -g foo.c
+gcc -shared -o libfoo.so foo.o
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
+
+g++ dltest.cpp -l dl  -o dltest
+./dltest
+valgrind ./dltest
+
