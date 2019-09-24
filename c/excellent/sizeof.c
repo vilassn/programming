@@ -1,6 +1,8 @@
 #include<stdio.h>
 main()
 {
- char s[]="vilas";
- printf("%d %d", strlen(s), sizeof(s));
+    char *p="vilasninawe";
+	char s[]="vilasninawe";
+
+ printf("%d %d %d %d", strlen(s), sizeof(s), strlen(p), sizeof(p));
 }

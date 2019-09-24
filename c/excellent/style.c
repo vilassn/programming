@@ -11,7 +11,7 @@ main()
         printf("\n\n\n");
 	start();
 }
-  
+
 start()
 {
   char ch;
@@ -49,13 +49,13 @@ start()
     }
      start();
 }
- 
+
 fa()
 {
   i++;
   int b;
   b=meet[i];
-  b++; 
+  b++;
   meet[i]=b;
   switch(b)
      {
@@ -552,7 +552,7 @@ fnewline()
 {
  i=0;
  printf("\n");
-} 
+}
 
 fspace()
 {
