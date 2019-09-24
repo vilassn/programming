@@ -1,13 +1,15 @@
 #include<stdio.h>
 #include<string.h>
-main() {
+
+int main() {
+
 	char str[60], ch;
-	int i, j, flag = 0, k, temp;
+	int i = 0, j = 0, flag = 0, k, temp;
 	printf("enter the string: ");
 	gets(str); //  "vilas is boy"
+
 	strrev(str);
-	i = 0;
-	j = 0;
+
 	while (str[i]) {
 		ch = str[i];
 		if (ch == ' ') {
@@ -16,13 +18,17 @@ main() {
 				str[j] = str[k];
 				str[k] = temp;
 			}
+
 			if (ch == '\0')
 				break;
 			flag = i + 1;
 		}
 		i++;
 	}
+
 	printf("%s", str);
+
+	return 0;
 }
 
 strrev(char *p) {

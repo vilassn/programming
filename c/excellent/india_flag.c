@@ -16,11 +16,13 @@ T|S~Pn SPm SOn TNn ULo0ULo#ULo-W\
 Hq!WFs XDt!";
 
 	while (a = str[b++ + 1]) {
+		//printf("Outer: %c\n", a);
 
-		//printf("\n%c\n", a);
+		while (a-- > 64) {
+			//printf("Inner: %c\n", a);
 
-		while (a-- > 64)
 			putchar((++c == 'Z') ? (c = c / 9) : (33 ^ b & 1));
+		}
 	}
 
 	return 0;
