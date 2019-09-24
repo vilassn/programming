@@ -1,11 +1,40 @@
 /*############## vsh (Shell) ************* Written by Vilas Ninawe ################*/
-#include"vsh.h"
+
+#include<stdio.h>
+#include<string.h>
+#include<strings.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<sys/stat.h>
+#include<sys/dir.h>
+#include<stdlib.h>
+#include<fcntl.h>
+#include<dirent.h>
+
+char *sysname(char **);
+void exit(int);
+void ls(int);
+void hist(int);
+void curpid();
+void ppid();
+void cd();
+void quit();
+void cat(int);
+void help();
+
+struct info {
+	int sqno;
+	char histstr[128];
+};
+
 #define MAX 128
+
+FILE *fp;
+char cm[10][MAX] = { }, str[MAX], ch;
+static int fd1, fd2, stdi = 0, stdo = 1;
 char *intcmds[] = { "ls", "hist", "curpid", "ppid", "cd", "quit", "cat", "calc",
 		"cal", "ntow", "style", "wc", "help" };
-char cm[10][MAX] = { }, str[MAX], ch;
-FILE *fp;
-static int fd1, fd2, stdi = 0, stdo = 1;
+
 main(int argc, char*argv[], char*env[]) {
 	int seqno = 1, flag6 = -1;
 	static int i, j, k, state, state1, flag, flag1, flag2, flag3, flag4, flag5;

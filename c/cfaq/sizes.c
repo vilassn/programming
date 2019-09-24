@@ -39,4 +39,8 @@ int main() {
 	printf("size of (struct student*) %lu\n", sizeof(struct student *));
 	printf("size of (void) %lu\n", sizeof(void));
 	printf("size of (void*) %lu\n", sizeof(void*));
+
+	char a[] = { 1, 2, 3 };
+	printf("%d", sizeof(a));
+
 }

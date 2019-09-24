@@ -52,6 +52,17 @@ int main() {
 
 	printf("size of struct s3: %d\n", (int) sizeof s3); //12
 
+//this pragma is effective only for below structures
+#pragma pack(1)
+	struct x {
+		int a :30;
+		int b :2;
+		char d :3;
+		char c :3;
+	} x1;
+
+	printf("size of struct x: %d\n", sizeof(x1));
+
 	return 0;
 }
 

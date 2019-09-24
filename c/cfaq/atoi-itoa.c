@@ -27,6 +27,17 @@ void strrev1(char* str) {
 	}
 }
 
+int myatoi(const char *string) {
+
+	int num = 0;
+	while (*string) {
+		num = (num << 3) + (num << 1) + (*string - '0');
+		string++;
+	}
+
+	return num;
+}
+
 int atoi1(char *str) {
 
 	int num = 0;
@@ -63,6 +74,8 @@ int main() {
 
 	itoa1(str1, num);
 	printf("string: %s\n", str1);
+
+	printf("\n%d\n", myatoi("1998"));
 
 	return 0;
 }

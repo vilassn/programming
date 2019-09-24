@@ -1,5 +1,7 @@
 #include<stdio.h>
+
 #define N 5
+
 main() {
 
 	int i, j, m, k;
@@ -10,6 +12,7 @@ main() {
 		i <= 0 ? (k = i, m = 0) : (k = -i, m = i);
 
 		for (j = 0; j < N; j++) {
+
 			if (k) {
 				k++;
 				printf("  ");

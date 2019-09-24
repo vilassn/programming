@@ -4,10 +4,13 @@ main() {
 
 	printf("A-Z=%d-%d,a-z=%d-%d\n", 'A', 'Z', 'a', 'z');
 
-	printf("%d\n", '\r');
+	printf("\\r:%d\n", '\r');
+	printf("\\0:%d\n", '\0');
+	printf("\\a:%d\n", '\a');
+	printf("\\n:%d\n", '\n');
 
-	printf("%d\n", '\0');
+	printf("NULL:%d\n", NULL); //=>0
+	printf("EOF:%d\n", EOF); //=>-1
 
-	printf("%d\n", '\a');
-
+	printf("\\n:%d\n", '\b'); //backspace
 }

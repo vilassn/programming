@@ -46,7 +46,7 @@ int main() {
 
 	int num = 1;
 	char*ch = (char*) &num;
-	if (*ch == 1)
+	if (ch[0] == 1)	//if (*ch == 1)
 		printf("Little Endian\n");
 	else
 		printf("Big Endian\n");

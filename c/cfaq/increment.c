@@ -23,5 +23,15 @@ void main() {
 
 	i = 1;
 	printf("%d\n", ++i + i++); //4
+
+	////////////////////////////////
+
+	int a[] = { 1, 2, 3, 4 };
+	int i = 1;
+	//i=a[i]+a[--i];
+	i = printf("first printf: a[i]=a[%d]=%d\n", i, a[i])
+			+ printf("second printf: a[--i]=a[%d]=%d\n", i, a[--i]);
+
+	printf("\ni=%d", i);
 }
 

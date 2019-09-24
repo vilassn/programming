@@ -47,6 +47,15 @@ int main() {
 	i = 1 << 33;
 	printf("%d\n", i); //0  // warning: left shift count >= width of type
 
+	int x = 0xFF;
+	printf("x=%d", x); //x=255
+
+	x = (0xFF >> 1);
+	printf("\nx=%d", x); //x=127
+
+	x = (0xFFFF >> 0); //x=65535
+	printf("\nx=%d", x);
+
 //////////////////////////////////////
 	signed char ch = 0b00000001 << 7; //-128
 	printbitschar(ch);
