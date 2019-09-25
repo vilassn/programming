@@ -1,1 +1,0 @@
-cmd_/root/modules/part4/part4/chrdrv_clock.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.0.0-24-generic/scripts/module-common.lds --build-id  -o /root/modules/part4/part4/chrdrv_clock.ko /root/modules/part4/part4/chrdrv_clock.o /root/modules/part4/part4/chrdrv_clock.mod.o

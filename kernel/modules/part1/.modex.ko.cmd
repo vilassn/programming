@@ -1,1 +1,0 @@
-cmd_/root/modules/part1/modex.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.0.0-24-generic/scripts/module-common.lds --build-id  -o /root/modules/part1/modex.ko /root/modules/part1/modex.o /root/modules/part1/modex.mod.o

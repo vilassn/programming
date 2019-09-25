@@ -1,1 +1,0 @@
-cmd_/home/Code-2.6.34/ddex/part3/chr_drv_mutex.ko := ld -r -m elf_x86_64  --build-id -o /home/Code-2.6.34/ddex/part3/chr_drv_mutex.ko /home/Code-2.6.34/ddex/part3/chr_drv_mutex.o /home/Code-2.6.34/ddex/part3/chr_drv_mutex.mod.o

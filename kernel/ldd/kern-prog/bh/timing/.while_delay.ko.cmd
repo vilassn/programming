@@ -1,1 +1,0 @@
-cmd_/home/veda/Code-2.6.30/kern-prog/bh/timing/while_delay.ko := ld -r -m elf_x86_64  --build-id -o /home/veda/Code-2.6.30/kern-prog/bh/timing/while_delay.ko /home/veda/Code-2.6.30/kern-prog/bh/timing/while_delay.o /home/veda/Code-2.6.30/kern-prog/bh/timing/while_delay.mod.o

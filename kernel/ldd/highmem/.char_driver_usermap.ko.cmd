@@ -1,1 +1,0 @@
-cmd_/home/veda/highmem/char_driver_usermap.ko := ld -r -m elf_x86_64  --build-id -o /home/veda/highmem/char_driver_usermap.ko /home/veda/highmem/char_driver_usermap.o /home/veda/highmem/char_driver_usermap.mod.o

@@ -1,1 +1,0 @@
-cmd_/home/hari/newcourse/modules/part3/chrdrv_udev.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-2.6.35-30-generic/scripts/module-common.lds --build-id -o /home/hari/newcourse/modules/part3/chrdrv_udev.ko /home/hari/newcourse/modules/part3/chrdrv_udev.o /home/hari/newcourse/modules/part3/chrdrv_udev.mod.o

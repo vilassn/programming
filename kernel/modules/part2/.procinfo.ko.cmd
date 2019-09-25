@@ -1,1 +1,0 @@
-cmd_/root/modules/part2/procinfo.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.0.0-24-generic/scripts/module-common.lds --build-id  -o /root/modules/part2/procinfo.ko /root/modules/part2/procinfo.o /root/modules/part2/procinfo.mod.o
