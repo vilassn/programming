@@ -1,51 +1,48 @@
 #include <stdio.h>
 
-struct linklist {
-	int data;
-	struct linklist *next;
+struct Bit {
+	int bit;
+	struct bit *next;
 }*head = 0;
 
-int printbin() {
+void print() {
 
-	printf("\nCoverted number into binary is:\n");
+	struct Bit *node = head;
+	while (node != NULL) {
 
-	struct linklist *temp = head;
-	while (temp != 0) {
-		printf("%d", temp->data);
-		temp = temp->next;
+		printf("%d", node->bit);
+		node = node->next;
 	}
 
-	return 0;
+	printf("\n");
 }
 
-int addbit(int bit) {
+void addbit(int bit) {
 
-	struct linklist *node, *temp = head;
-	node = (struct linklist *) malloc(sizeof(struct linklist));
-	node->data = bit;
-	node->next = 0;
+	struct Bit *node = (struct Bit *) malloc(sizeof(struct Bit));
+	node->bit = bit;
+	node->next = NULL;
 
-	if (head == 0) {
+	if (head == NULL) {
 		head = node;
 	} else {
-		while ((temp->next) != 0)
+		struct Bit *temp = head;
+		while (temp->next != NULL)
 			temp = temp->next;
+
 		temp->next = node;
 	}
-
-	return 0;
 }
 
 int main() {
 
 	int num;
-	printf("Enter the number: ");
+
+	printf("Enter number to print in binary: ");
 	scanf("%d", &num);
 
 	for (int i = 31; i >= 0; i--)
-		((1 << i) & num) ? addbit(1) : addbit(0);
+		addbit((num & (1 << i)) ? 1 : 0);
 
-	printbin();
-
-	return 0;
+	print();
 }

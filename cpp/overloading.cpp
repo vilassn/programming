@@ -2,13 +2,12 @@
 
 using namespace std;
 
-class Calc
-{
- private:
- 	int real;
+class Calc {
+private:
+	int real;
 	float cmplx;
 
- public:
+public:
 	void getdata();
 	void setdata(int, float);
 	Calc adddata(int);
@@ -19,63 +18,55 @@ class Calc
 	void putdata();
 };
 
-void Calc::getdata()
-{
- cout<<"Enter the real and complex values\n";
- cin>>real>>cmplx;
+void Calc::getdata() {
+	cout << "Enter the real and complex values\n";
+	cin >> real >> cmplx;
 }
 
-void Calc::setdata(int obj1, float obj2)
-{
- real=obj1;
- cmplx=obj2;
+void Calc::setdata(int obj1, float obj2) {
+	real = obj1;
+	cmplx = obj2;
 }
 
-Calc Calc::adddata(int val)
-{
- Calc res;
- res.real = real + val;
- res.cmplx = cmplx + val;
- return res;
+Calc Calc::adddata(int val) {
+	Calc res;
+	res.real = real + val;
+	res.cmplx = cmplx + val;
+	return res;
 }
 
-Calc Calc::adddata(Calc obj)
-{
- Calc res;
- res.real = real + obj.real;
- res.cmplx = cmplx + obj.cmplx;
- return res;
+Calc Calc::adddata(Calc obj) {
+	Calc res;
+	res.real = real + obj.real;
+	res.cmplx = cmplx + obj.cmplx;
+	return res;
 }
 
-Calc Calc::operator+(Calc obj)
-{
- Calc res;
- res.real = real + obj.real;
- res.cmplx = cmplx + obj.cmplx;
- return res;
+Calc Calc::operator+(Calc obj) {
+	Calc res;
+	res.real = real + obj.real;
+	res.cmplx = cmplx + obj.cmplx;
+	return res;
 }
 
-void Calc::putdata()
-{
- cout<<"real="<<real<<" complex="<<cmplx<<endl;
+void Calc::putdata() {
+	cout << "real=" << real << " complex=" << cmplx << endl;
 }
 
-int main()
-{
- Calc calc1, calc2, res;
+int main() {
+	Calc calc1, calc2, res;
 
- calc1.getdata();
- res=calc1.adddata(10);
- res.putdata();
+	calc1.getdata();
+	res = calc1.adddata(10);
+	res.putdata();
 
- calc2.setdata(10, 20.2);
- res=calc1.adddata(calc2);
- res.putdata();
+	calc2.setdata(10, 20.2);
+	res = calc1.adddata(calc2);
+	res.putdata();
 
- res=calc1+calc2;
- res.putdata();
+	res = calc1 + calc2;
+	res.putdata();
 
- return 0;
+	return 0;
 }
-
 
