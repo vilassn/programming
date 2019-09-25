@@ -1,0 +1,1 @@
+cmd_/root/modules/part2/structmm.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.0.0-24-generic/scripts/module-common.lds --build-id  -o /root/modules/part2/structmm.ko /root/modules/part2/structmm.o /root/modules/part2/structmm.mod.o

@@ -1,0 +1,1 @@
+cmd_/root/modules/part1/moddep2.ko := ld -r -m elf_i386 -T /usr/src/linux-headers-3.0.0-24-generic/scripts/module-common.lds --build-id  -o /root/modules/part1/moddep2.ko /root/modules/part1/moddep2.o /root/modules/part1/moddep2.mod.o

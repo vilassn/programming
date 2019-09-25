@@ -1,0 +1,1 @@
+cmd_/home/Code-2.6.34/ddex/part3/chr_drv_reentrant.ko := ld -r -m elf_x86_64  --build-id -o /home/Code-2.6.34/ddex/part3/chr_drv_reentrant.ko /home/Code-2.6.34/ddex/part3/chr_drv_reentrant.o /home/Code-2.6.34/ddex/part3/chr_drv_reentrant.mod.o

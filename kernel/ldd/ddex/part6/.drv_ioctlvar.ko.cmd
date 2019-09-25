@@ -1,0 +1,1 @@
+cmd_/root/Downloads/Code-2.6.31/ddex/char/ioctl/drv_ioctlvar.ko := ld -r -m elf_x86_64 -T /usr/src/kernels/2.6.33.3-85.fc13.x86_64/scripts/module-common.lds --build-id -o /root/Downloads/Code-2.6.31/ddex/char/ioctl/drv_ioctlvar.ko /root/Downloads/Code-2.6.31/ddex/char/ioctl/drv_ioctlvar.o /root/Downloads/Code-2.6.31/ddex/char/ioctl/drv_ioctlvar.mod.o

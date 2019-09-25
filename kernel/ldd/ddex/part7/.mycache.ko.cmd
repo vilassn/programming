@@ -1,0 +1,1 @@
+cmd_/home/Code-2.6.34/ddex/part6/mycache.ko := ld -r -m elf_x86_64  --build-id -o /home/Code-2.6.34/ddex/part6/mycache.ko /home/Code-2.6.34/ddex/part6/mycache.o /home/Code-2.6.34/ddex/part6/mycache.mod.o

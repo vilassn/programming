@@ -1,0 +1,1 @@
+cmd_/root/Programs/USB-NOTIFIER/device_details.ko := ld -r -m elf_i386 -T /usr/src/kernels/2.6.33.3-85.fc13.i686.PAE/scripts/module-common.lds --build-id -o /root/Programs/USB-NOTIFIER/device_details.ko /root/Programs/USB-NOTIFIER/device_details.o /root/Programs/USB-NOTIFIER/device_details.mod.o

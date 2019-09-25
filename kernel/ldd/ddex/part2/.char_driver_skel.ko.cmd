@@ -1,0 +1,1 @@
+cmd_/root/Downloads/Code-2.6.31/ddex/char/part1/char_driver_skel.ko := ld -r -m elf_x86_64 -T /usr/src/linux-2.6.33.7/scripts/module-common.lds --build-id -o /root/Downloads/Code-2.6.31/ddex/char/part1/char_driver_skel.ko /root/Downloads/Code-2.6.31/ddex/char/part1/char_driver_skel.o /root/Downloads/Code-2.6.31/ddex/char/part1/char_driver_skel.mod.o

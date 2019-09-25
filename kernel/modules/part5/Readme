@@ -1,0 +1,28 @@
+/* Insert the vbus moduele at boot time */
+
+check your present running kernel version. 
+
+uname -r
+create vbus directory in /lib/modules/$(uname -r)/kernel/drivers
+
+copy vbus.ko file to /lib/modules/$(uname -r)/kernel/drivers/vbus
+
+add this path to modules.dep file located under in the following directory.
+
+/lib/modules/$(uname -r)
+
+edit the file like this
+
+kernel/drivers/vbus/vbus.ko:
+
+save and comeout
+
+give the following command 
+
+depmod -a
+
+open /etc/modules file and add vbus entry
+
+Reboot the system module automatically loaded
+
+

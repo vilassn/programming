@@ -1,0 +1,4 @@
+
+	-> HOW TO COMPILE LIBUSB PROGRAMS
+
+		gcc -I/usr/local filename.c  -o  filename  -L/usr/local/lib -lusb-1.0 

@@ -1,0 +1,1 @@
+cmd_/root/Programs/USB-NOTIFIER/sample1.ko := ld -r -m elf_i386 -T /usr/src/linux-2.6.34/scripts/module-common.lds --build-id -o /root/Programs/USB-NOTIFIER/sample1.ko /root/Programs/USB-NOTIFIER/sample1.o /root/Programs/USB-NOTIFIER/sample1.mod.o

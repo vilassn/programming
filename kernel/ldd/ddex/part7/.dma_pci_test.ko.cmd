@@ -1,0 +1,1 @@
+cmd_/home/Code-2.6.34/ddex/part6/dma_pci_test.ko := ld -r -m elf_x86_64  --build-id -o /home/Code-2.6.34/ddex/part6/dma_pci_test.ko /home/Code-2.6.34/ddex/part6/dma_pci_test.o /home/Code-2.6.34/ddex/part6/dma_pci_test.mod.o

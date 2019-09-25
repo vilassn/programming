@@ -1,0 +1,29 @@
+implementing ioctl in a  char driv
+------------------------------------------------------------------------------------------------------------
+
+1. identify configuration operations to be supported
+2. Declare a driver specific ioctl request command for each configuration to be supported
+
+	1. implement header file for command definitions
+ Defining constants require us to decide folllowing values
+
+        1. type or magic number (type)
+        2. sequence number which is eigth bits wide. This means
+           we can have up to 256 ioctl commands (nr)
+        3. direction if the arg is involved, whether we are reading or writing 
+        4. size(composition) of the arguement.
+           
+   To arrive at unique numbers easily we use the following macros
+   _IO(type, nr);
+   _IOW(type, nr, dataitem) the fourth item calculated using sizeof 
+   _IOR(type, nr, dataitem)
+   _IOWR(type, nr, dataitem)
+
+	
+
+3. implement driver operation to process recvd commands
+
+
+
+
+

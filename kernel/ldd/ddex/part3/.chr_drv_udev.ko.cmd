@@ -1,0 +1,1 @@
+cmd_/root/Code-2.6.30/ddex/part2/chr_drv_udev.ko := ld -r -m elf_i386 -T /usr/src/kernels/2.6.32.21-166.fc12.i686.PAE/scripts/module-common.lds --build-id -o /root/Code-2.6.30/ddex/part2/chr_drv_udev.ko /root/Code-2.6.30/ddex/part2/chr_drv_udev.o /root/Code-2.6.30/ddex/part2/chr_drv_udev.mod.o
