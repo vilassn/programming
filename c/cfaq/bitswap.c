@@ -63,6 +63,9 @@ int main() {
 
 	printf("A-Z=%d-%d, a-z=%d-%d, 0-9=%d-%d\n", 'A', 'Z', 'a', 'z', '0', '9');
 
+	// & operator has high priority than ^
+	printf("%d\n", 33 ^ 11 & 1); // 33 ^ (11 & 1)
+
 	/*
 	 * signed char range => -128 to 127
 	 * unsigned char range => 0 to 255

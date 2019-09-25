@@ -2,6 +2,14 @@
 #include <stdio.h>
 using namespace std;
 
+/*
+ Why does calling method through null pointer “work” in C++?
+ The pointer isn't needed to call the method.
+ The type of the pointer is known, so the code for the method is known.
+ The method doesn't use this, so it runs the code just fine.
+ It's undefined behavior, but its more efficient not to check if the pointer is NULL, so it runs.
+ */
+
 class A {
 private:
 	int x;
@@ -32,7 +40,3 @@ int main() {
 	obj->func();
 }
 
-/*
- Why does calling method through null pointer “work” in C++?
- The pointer isn't needed to call the method. The type of the pointer is known, so the code for the method is known. The method doesn't use this, so it runs the code just fine. It's undefined behavior, but its more efficient not to check if the pointer is NULL, so it runs.
- */

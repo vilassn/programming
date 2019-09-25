@@ -4,7 +4,13 @@ int main() {
 
 	int a, b = 10, c = 10;
 
-	printf("vilas\n");
+	// printf("space:  %d\n", ' '); //32
+	// printf("exclaim:%d\n", '!'); //33
+	// printf("newline:%c\n", '\n'); //10
+	// printf("amprsnd:%c\n", '@'); //64
+	// printf("capitlZ:%c\n", 'Z'); //90
+
+	printf("%d\n", 33 ^ (11 & 1));
 
 	char *str =
 			"\
@@ -15,13 +21,20 @@ HCStHAUFAgcEAelclcn^r^r\\tZvYxXy\
 T|S~Pn SPm SOn TNn ULo0ULo#ULo-W\
 Hq!WFs XDt!";
 
-	while (a = str[b++ + 1]) {
+	while (a = str[b + 1]) {
 		//printf("Outer: %c\n", a);
 
-		while (a-- > 64) {
+		b++;
+		while (a > 64) {
 			//printf("Inner: %c\n", a);
 
-			putchar((++c == 'Z') ? (c = c / 9) : (33 ^ b & 1));
+			a--;
+			c++;
+
+			if (c == 90)
+				printf("%c", c = 10); //print '\n'
+			else
+				printf("%c", 33 ^ (b & 1)); // print ' ' or '!'
 		}
 	}
 

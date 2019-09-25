@@ -13,6 +13,10 @@ union result {
 
 int main() {
 
+	int *p = 0;
+
+	printf("size of int by code: %d\n", (int) (p + 1) - (int) p);
+
 	printf("size of char %lu\n", sizeof(char));
 	printf("size of short int %lu\n", sizeof(short int));
 	printf("size of int %lu\n", sizeof(int));
