@@ -9,7 +9,7 @@ protected:
 public:
 	B() {
 	}
-	;
+	
 
 	void read() {
 		cout << "x in class B?";

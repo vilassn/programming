@@ -6,15 +6,17 @@ typedef struct tree {
 	struct tree *left;
 	struct tree *right;
 } Tree;
+
 Tree *head = 0;
 
 enum choice {
-	ADD = 'a', DELETE = 'd', SEARCH = 's', PRINT = 'p', EXIT = 'e'
+	ADD = 1, DELETE = 2, SEARCH = 3, PRINT = 4, EXIT = 5
 };
 
-void insert(char * ch) //non recursive
-{
-	node *temp = malloc(sizeof (node));
+//non recursive
+void insert(char * ch) {
+
+	node *temp = malloc(sizeof(node));
 	temp->key = ch;
 	temp->left = NULL;
 	temp->right = NULL;
@@ -44,8 +46,9 @@ void insert(char * ch) //non recursive
 	}
 }
 
-void insert(node ** tree, node * item) //recursive
-{
+//recursive
+void insert(node ** tree, node * item) {
+
 	if (!(*tree)) {
 		*tree = item;
 		return;
@@ -56,8 +59,9 @@ void insert(node ** tree, node * item) //recursive
 		insert(&(*tree)->right, item);
 }
 
-void remove(char* data) //non recursive
-{
+//non recursive
+void remove(char* data) {
+
 	node *temp = root;
 	node *prev = root;
 
@@ -115,12 +119,17 @@ void remove(char* data) //non recursive
 	}
 }
 
-remove(struct bintree *node, int num) //recursive
-{
+//recursive
+remove(struct bintree *node, int num) {
+
 	static struct bintree *parent;
+
 	if (node != 0) {
+
 		if ((node->data) != num) {
+
 			parent = node;
+
 			if (num < (node->data))
 				remove(node->lchild, num);
 			else
@@ -131,15 +140,19 @@ remove(struct bintree *node, int num) //recursive
 }
 
 node* find(char * ch) {
+
 	node* curr = root;
+
 	while (curr) {
-		if (!strcmp(ch, curr->key)) {
+
+		if (!strcmp(ch, curr->key))
 			return curr;
-		} else if (strcmp(ch, curr->key) > 0)
+		else if (strcmp(ch, curr->key) > 0)
 			curr = curr->right;
 		else if (strcmp(ch, curr->key) < 0)
 			curr = curr->left;
 	}
+
 	return NULL;
 }
 
@@ -172,6 +185,7 @@ void inorder(Tree* node) {
 }
 
 print(struct bintree *node) {
+
 	if (node != 0) {
 		printf("\n%d ", node->data);
 		print(node->lchild);
@@ -180,6 +194,7 @@ print(struct bintree *node) {
 }
 
 void destroy_tree(node* p) {
+
 	if (p != NULL) {
 		destroy_tree(p->left);
 		destroy_tree(p->right);
@@ -188,6 +203,7 @@ void destroy_tree(node* p) {
 }
 
 int maxDepth(struct node* node) {
+
 	if (node == NULL)
 		return 0;
 	else {
@@ -209,10 +225,16 @@ void main() {
 	char ch;
 
 	while (1) {
-		printf(
-				"Enter Choice: %c.Add, %c.Delete, %c.Search, %c.Print, %c.Exit: ",
-				ADD, DELETE, SEARCH, PRINT, EXIT);
+
+		printf("Enter choice: \n");
+		printf("%d. Add\n", ADD);
+		printf("%d. Delete\n", DELETE);
+		printf("%d. Search\n", SEARCH);
+		printf("%d. Print\n", PRINT);
+		printf("%d. Exit\n", EXIT);
+
 		scanf(" %c", &ch);
+
 		switch (ch) {
 		case ADD:
 			printf("Enter num to add: ");

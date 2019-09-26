@@ -1,7 +1,7 @@
 #include"student.h"
 extern struct student *head;
 
-void add() {
+void static add() {
 	char choice;
 	system("clear");
 	while (1) {
