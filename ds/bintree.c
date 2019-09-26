@@ -5,58 +5,62 @@ typedef struct tree {
 	int data;
 	struct tree *left;
 	struct tree *right;
-} Tree;
+} Node;
 
-Tree *head = 0;
+Node *root = NULL;
 
-enum choice {
-	ADD = 1, DELETE = 2, SEARCH = 3, PRINT = 4, EXIT = 5
+enum OPTION {
+	ADD = 1, DELETE, SEARCH, PRINT, EXIT
 };
 
 //non recursive
-void insert(char * ch) {
+void insert(int data) {
 
-	node *temp = malloc(sizeof(node));
-	temp->key = ch;
-	temp->left = NULL;
-	temp->right = NULL;
+	Node *node = malloc(sizeof(Node));
+	node->data = data;
+	node->left = NULL;
+	node->right = NULL;
 
-	if (root == NULL)
-		root = temp;
-	else {
-		// find the correct location for the new node
-		// and insert it
-		bool inserted = false;
-		node *locn = root;
-		while (!inserted) {
-			if (locn->key > temp->key) {
-				if (locn->left == NULL) {
-					locn->left = temp;
-					inserted = true;
+	// Add with recursion
+	// insert(&root, node);
+
+	if (root == NULL) {
+		root = node;
+	} else { // Find correct location for new node and insert it
+		int inserted = 0;
+		Node *loc = root;
+
+		while (inserted == 0) {
+			if (node->data < loc->data) {
+				if (loc->left == NULL) {
+					loc->left = node;
+					inserted = 1;
 				} else
-					locn = locn->left;
+					loc = loc->left;
 			} else {
-				if (locn->right == NULL) {
-					locn->right = temp;
-					inserted = true;
+				if (loc->right == NULL) {
+					loc->right = node;
+					inserted = 1;
 				} else
-					locn = locn->right;
+					loc = loc->right;
 			}
 		}
 	}
 }
 
 //recursive
-void insert(node ** tree, node * item) {
+void insert(Node **loc, Node *node) {
 
-	if (!(*tree)) {
-		*tree = item;
+	if (*loc == NULL) {
+		*loc = node;
 		return;
 	}
-	if (item->val < (*tree)->val)
-		insert(&(*tree)->left, item);
-	else if (item->val > (*tree)->val)
-		insert(&(*tree)->right, item);
+
+	if (node->data < (*loc)->data) {
+		insert(&(*loc)->left, node);
+	} else {
+		insert(&(*loc)->right, node);
+	}
 }
 
 //non recursive
@@ -161,7 +165,7 @@ void mirror(Tree* node) {
 	if (node == NULL)
 		return;
 	else {
-		Tree* temp;
+		Tree * temp;
 
 		/* do the subtrees */
 		mirror(node->left);

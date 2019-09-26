@@ -9,7 +9,17 @@ typedef struct node {
 Node *head = NULL;
 
 enum OPTION {
-	ADD = 1, DELETE, SEARCH, SORT, REVERSE, GET3RDLAST, GETMIDDLE, PRINT, EXIT
+	ADD = 1,
+	DELETE,
+	SEARCH,
+	SORT,
+	REVERSE,
+	GET3RDLAST,
+	GETMIDDLE,
+	LOAD,
+	SAVE,
+	PRINT,
+	EXIT
 };
 
 void add() {
@@ -184,17 +194,78 @@ void sort() {
 
 void reverse() {
 
-	Node *temp = head;
-	Node *prev = NULL;
-
 	if (head == NULL) {
 		printf("List is empty\n");
 	} else {
-		while (temp->next != NULL) {
-			prev = temp;
-			temp
+
+		Node *prev = head;
+
+		prev->next = NULL;
+		head = head->next;
+
+		while (head->next != NULL) {
+			Node *next = head->next;
+			head->next = prev;
+			prev = head;
+			head = next;
+		}
+
+		head->next = prev;
+	}
+}
+
+void load() {
+
+	char filename[20];
+
+	printf("Enter the name of database file: ");
+	scanf("%s", filename);
+
+	FILE *fp = fopen(filename, "ab+");
+	if (fp == 0) {
+		printf("File can not be accessed\n");
+		return;
+	}
+
+	Node node, *temp;
+	while (fread(&node, sizeof(Node) - 4, 1, fp)) {
+
+		Node *new = (Node *) malloc(sizeof(Node));
+		new->data = node.data;
+		new->next = NULL;
+
+		if (head == NULL) {
+			head = new;
+			temp = head;
+		} else {
+			temp->next = new;
+			temp = new;
 		}
 	}
+
+	fclose(fp);
+}
+
+void save() {
+
+	char filename[20];
+
+	printf("Enter the database file name: ");
+	scanf("%s", filename);
+
+	FILE *fp = fopen(filename, "wb");
+	if (fp == 0) {
+		printf("File can not be opened\n");
+		return;
+	}
+
+	Node *temp = head;
+	while (temp) {
+		fwrite(temp, sizeof(Node) - 4, 1, fp);
+		temp = temp->next;
+	}
+
+	fclose(fp);
 }
 
 void print() {
@@ -224,6 +295,8 @@ int main() {
 		printf("%d. REVERSE\n", REVERSE);
 		printf("%d. GET3RDLAST\n", GET3RDLAST);
 		printf("%d. GETMIDDLE\n", GETMIDDLE);
+		printf("%d. LOAD\n", LOAD);
+		printf("%d. SAVE\n", SAVE);
 		printf("%d. PRINT\n", PRINT);
 		printf("%d. EXIT\n", EXIT);
 
@@ -250,6 +323,12 @@ int main() {
 			break;
 		case GETMIDDLE:
 			getmiddle();
+			break;
+		case LOAD:
+			load();
+			break;
+		case SAVE:
+			save();
 			break;
 		case PRINT:
 			print();
