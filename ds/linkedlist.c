@@ -8,8 +8,8 @@ typedef struct node {
 
 Node *head = NULL;
 
-enum {
-	ADD = 1, DELETE, SEARCH, SORT, PRINT, EXIT
+enum OPTION {
+	ADD = 1, DELETE, SEARCH, SORT, REVERSE, GET3RDLAST, GETMIDDLE, PRINT, EXIT
 };
 
 void add() {
@@ -24,13 +24,32 @@ void add() {
 
 	if (head == NULL) {
 		head = node;
-	} else //add at end
-	{
+	}
+	//add at begin
+//	else {
+//		node->next = head;
+//		head = node;
+//	}
+	//add at end
+//	else {
+//		Node *temp = head;
+//		while (temp->next != NULL)
+//			temp = temp->next;
+//
+//		temp->next = node;
+//	}
+	//add sorted
+	else {
 		Node *temp = head;
-		while (temp->next != NULL)
+		while (temp->next != NULL && temp->next->data < data)
 			temp = temp->next;
 
-		temp->next = node;
+		if (temp->next == NULL) {
+			temp->next = node;
+		} else {
+			node->next = temp->next;
+			temp->next = node;
+		}
 	}
 }
 
@@ -40,9 +59,9 @@ void delete() {
 	printf("Enter value to delete: ");
 	scanf("%d", &data);
 
-	if (head == NULL)
+	if (head == NULL) {
 		printf("List is empty\n");
-	else {
+	} else {
 
 		Node *temp = NULL;
 
@@ -93,8 +112,89 @@ void search() {
 	}
 }
 
+void get3rdlast(int index) {
+
+	Node *temp0 = head;
+	Node *temp3 = head;
+
+	if (head == NULL) {
+		printf("List is empty\n");
+	} else {
+		for (int i = 1; i < index; i++) {
+
+			if (temp3->next != NULL) {
+				temp3 = temp3->next;
+			} else {
+				printf("List has less than 3 elements\n");
+				return;
+			}
+		}
+
+		while (temp3->next != NULL) {
+			temp0 = temp0->next;
+			temp3 = temp3->next;
+		}
+
+		printf("3rd last element is %d\n", temp0->data);
+	}
+}
+
+void getmiddle() {
+
+	Node *temp1 = head;
+	Node *temp2 = head;
+
+	if (head == NULL) {
+		printf("List is empty\n");
+	} else {
+		while (temp2->next != NULL && temp2->next->next != NULL) {
+
+			temp1 = temp1->next;
+			temp2 = temp2->next->next;
+		}
+
+		printf("Middle of list is %d\n", temp1->data);
+	}
+}
+
 void sort() {
 
+	Node *tempi = head;
+	Node *tempj = head;
+
+	if (head == NULL) {
+		printf("List is empty\n");
+	} else {
+
+		while (tempi->next != NULL) {
+			tempj = tempi->next;
+
+			while (tempj) {
+				if (tempi->data > tempj->data) {
+					int data = tempi->data;
+					tempi->data = tempj->data;
+					tempj->data = data;
+				}
+				tempj = tempj->next;
+			}
+			tempi = tempi->next;
+		}
+	}
+}
+
+void reverse() {
+
+	Node *temp = head;
+	Node *prev = NULL;
+
+	if (head == NULL) {
+		printf("List is empty\n");
+	} else {
+		while (temp->next != NULL) {
+			prev = temp;
+			temp
+		}
+	}
 }
 
 void print() {
@@ -121,6 +221,9 @@ int main() {
 		printf("%d. DELETE\n", DELETE);
 		printf("%d. SEARCH\n", SEARCH);
 		printf("%d. SORT\n", SORT);
+		printf("%d. REVERSE\n", REVERSE);
+		printf("%d. GET3RDLAST\n", GET3RDLAST);
+		printf("%d. GETMIDDLE\n", GETMIDDLE);
 		printf("%d. PRINT\n", PRINT);
 		printf("%d. EXIT\n", EXIT);
 
@@ -138,6 +241,15 @@ int main() {
 			break;
 		case SORT:
 			sort();
+			break;
+		case REVERSE:
+			reverse();
+			break;
+		case GET3RDLAST:
+			get3rdlast(3);
+			break;
+		case GETMIDDLE:
+			getmiddle();
 			break;
 		case PRINT:
 			print();
