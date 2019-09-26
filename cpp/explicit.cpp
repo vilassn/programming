@@ -4,39 +4,25 @@
 using std::cout;
 using std::endl;
 
-class complexNumbers {
+// Now if you try
+//
+// String mystring = 'x';
+//
+// the char 'x' will be converted to int and will call String(int) constructor.
+// But this is not what the user might have intended.
+//
+// So to prevent such conditions, we can define the class's constructor as explicit.
 
-	double real, img;
+class String {
 
 public:
-
-	complexNumbers() :
-			real(0), img(0) {
-	}
-
-	complexNumbers(const complexNumbers& c) {
-		real = c.real;
-		img = c.img;
-	}
-
-	explicit complexNumbers(double r, double i = 0.0) {
-		real = r;
-		img = i;
-	}
-
-	friend void display(complexNumbers cx);
-};
-
-void display(complexNumbers cx) {
-	cout << "Real Part: " << cx.real << " Imag Part: " << cx.img << endl;
+	explicit String(int n); //allocate n bytes
+	String(const char *p); // initialize sobject with string p
 }
 
 int main() {
 
-	complexNumbers one(1);
-	display(one);
-	complexNumbers two = 2;
-	display(200);
+	Foo mystring = 'x';
 
 	return 0;
 }

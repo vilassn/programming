@@ -1,5 +1,14 @@
 #include <stdio.h>
 
+//How does free() know the size of memory to be deallocated?
+//
+//When memory allocation is done, the actual heap space allocated is one word larger than the requested memory.
+//The extra word is used to store the size of the allocation and is later used by free( )
+//
+//When you call for memory to be allocated on the heap, a system call is made to the kernel space of the OS to provide this memory.
+//This memory is mapped to your process structure, which is maintained by the OS. When your program exits,
+//the OS goes through a clean up routing, closing all file descriptors, and marks this memory free for allocation to other processes (among other things).
+
 int main() {
 
 	// const int
