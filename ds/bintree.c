@@ -24,9 +24,11 @@ void insert(int data) {
 	// Add with recursion
 	// insert(&root, node);
 
+	//Add without recursion
+	// Find correct location for new node and insert it
 	if (root == NULL) {
 		root = node;
-	} else { // Find correct location for new node and insert it
+	} else {
 		int inserted = 0;
 		Node *loc = root;
 
@@ -49,17 +51,18 @@ void insert(int data) {
 }
 
 //recursive
-void insert(Node **loc, Node *node) {
+void insert(Node **node, Node *data) {
 
-	if (*loc == NULL) {
-		*loc = node;
+	Node *loc = *node;
+	if (loc == NULL) {
+		loc = data;
 		return;
 	}
 
-	if (node->data < (*loc)->data) {
-		insert(&(*loc)->left, node);
+	if (data->data < loc->data) {
+		insert(&loc->left, data);
 	} else {
-		insert(&(*loc)->right, node);
+		insert(&loc->right, data);
 	}
 }
 
@@ -70,35 +73,41 @@ void remove(char* data) {
 	node *prev = root;
 
 	while (1) {
+
 		if (temp == NULL)
 			return;
 
 		if (strcmp(temp->key, data) == 0) {
-			bool left = false;
+
+			int left = 0;
 
 			if (prev->left == temp)
-				left = true;
+				left = 1;
 
 			if (temp->left == NULL && left) {
 				prev->left = temp->right;
-				delete temp;
+				free(temp);
 				return;
 			}
+
 			if (temp->right == NULL && left) {
 				prev->left = temp->left;
-				delete temp;
+				free(temp);
 				return;
 			}
-			if (temp->left == NULL && left == false) {
+
+			if (temp->left == NULL && left == 0) {
 				prev->right = temp->right;
-				delete temp;
+				free(temp);
 				return;
 			}
-			if (temp->right == NULL && left == false) {
+
+			if (temp->right == NULL && left == 0) {
 				prev->right = temp->left;
-				delete temp;
+				free(temp);
 				return;
 			}
+
 			while (temp->left != NULL && temp->right != NULL) {
 				temp->key = temp->right->key;
 				prev = temp;
@@ -111,7 +120,7 @@ void remove(char* data) {
 			if (temp->left == NULL)
 				prev->right = temp->right;
 
-			delete temp;
+			free(temp);
 			return;
 		}
 
@@ -124,23 +133,19 @@ void remove(char* data) {
 }
 
 //recursive
-remove(struct bintree *node, int num) {
+remove(Node *node, int num) {
 
-	static struct bintree *parent;
+	static Node *parent = NULL;
 
-	if (node != 0) {
+	if (node != NULL && node->data != num) {
 
-		if ((node->data) != num) {
+		parent = node;
 
-			parent = node;
-
-			if (num < (node->data))
-				remove(node->lchild, num);
-			else
-				remove(node->rchild, num);
-		}
+		if (num < node->data)
+			remove(node->lchild, num);
+		else
+			remove(node->rchild, num);
 	}
-
 }
 
 node* find(char * ch) {
@@ -162,9 +167,10 @@ node* find(char * ch) {
 
 void mirror(Tree* node) {
 
-	if (node == NULL)
+	if (node == NULL) {
 		return;
-	else {
+	} else {
+
 		Tree * temp;
 
 		/* do the subtrees */
@@ -188,7 +194,7 @@ void inorder(Tree* node) {
 	inorder(node->right);
 }
 
-print(struct bintree *node) {
+print(Node *node) {
 
 	if (node != 0) {
 		printf("\n%d ", node->data);
@@ -197,16 +203,16 @@ print(struct bintree *node) {
 	}
 }
 
-void destroy_tree(node* p) {
+void destroy_tree(Node *p) {
 
 	if (p != NULL) {
 		destroy_tree(p->left);
 		destroy_tree(p->right);
-		delete p;
+		free(p);
 	}
 }
 
-int maxDepth(struct node* node) {
+int maxDepth(Node *node) {
 
 	if (node == NULL)
 		return 0;

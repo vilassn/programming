@@ -2,75 +2,81 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
+typedef struct node {
 	void *element;
-	struct Node *next;
+	struct node *next;
 } Node;
 
 typedef struct {
 	Node *head;
 	Node *tail;
-	int current_size;
+	int size;
 } Queue;
 
-void *pop(Queue *q) {
-	Node *temp;
-	void *element;
+Queue *alloc_queue() {
 
-	if (q->current_size == 0)
-		return NULL;
+	Queue *q = (Queue *) malloc(sizeof(Queue));
 
-	temp = q->head;
-	element = temp->element;
+	q->head = q->tail = NULL;
+	q->size = 0;
 
-	if (q->current_size == 1)
-		q->head = q->tail = NULL;
-	else
-		q->head = q->head->next;
-
-	free(temp);
-	q->current_size--;
-	return element;
+	return q;
 }
 
-int push(Queue *q, void * element) {
-	Node *new_node = (Node *) malloc(sizeof(Node));
+int push(Queue *q, void *element) {
 
-	if (new_node == NULL)
-		return -1;
+	Node *new_node = (Node *) malloc(sizeof(Node));
 
 	new_node->element = element;
 	new_node->next = NULL;
 
-	if (q->current_size == 0)
+	if (q->size == 0)
 		q->head = new_node;
 	else
 		q->tail->next = new_node;
 
 	q->tail = new_node;
-	q->current_size++;
+	q->size++;
 
 	return 0;
 }
 
-Queue *alloc_queue() {
-	Queue *q = (Queue *) malloc(sizeof(Queue));
-	if (q) {
+void *pop(Queue *q) {
+
+	Node *node;
+	void *element;
+
+	if (q->size == 0)
+		return NULL;
+
+	node = q->head;
+	element = q->head->element;
+
+	if (q->size == 1)
 		q->head = q->tail = NULL;
-		q->current_size = 0;
-	}
-	return q;
+	else
+		q->head = q->head->next;
+
+	free(node);
+	q->size--;
+
+	return element;
 }
 
 void free_queue(Queue *q) {
-	while (q->current_size)
+
+	while (q->size) {
+
 		pop(q);
+	}
 }
 
 void free_queue_and_qelement(Queue *q) {
-	while (q->current_size) {
+
+	while (q->size) {
+
 		void *element = pop(q);
-		if (element)
+		if (element != NULL)
 			free(element);
 	}
 }
@@ -83,7 +89,7 @@ int main() {
 	void *p = pop(q);
 
 	printf("%s is popped\n", (char*) p);
-	printf("current_size %d\n", q->current_size);
+	printf("size %d\n", q->size);
 
 	return 0;
 }
