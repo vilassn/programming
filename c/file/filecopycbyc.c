@@ -1,10 +1,11 @@
 // copy a file
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
+
 int main(int argc, char *argv[]) {
 
 	FILE *in, *out;
-	char ch;
+
 	if (argc != 3) {
 		printf("You forgot to enter a filename.\n");
 		exit(1);
@@ -23,7 +24,7 @@ int main(int argc, char *argv[]) {
 	/* This code actually copies the file. */
 	while (!feof(in)) // feof return true if end of file occur
 	{
-		ch = getc(in);
+		char ch = getc(in);
 		if (!feof(in))
 			putc(ch, out);
 	}

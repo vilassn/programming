@@ -1,23 +1,28 @@
 #include<stdio.h>
 #include<malloc.h>
 #include<string.h>
+
 main() {
-	FILE *fp;
+
 	char ch = 0, str[100][20], *file, *addr, *ptr;
 	int i = 0, j = 0, k = 0, count[100] = { 0 }, index = 0;
+
 	file = (char *) malloc(1000);
-	fp = fopen("vilas.txt", "r");
+	FILE *fp = fopen("vilas.txt", "r");
 	if (fp == 0) {
 		printf("Error while opening the file");
 		return 0;
 	}
+
 	while ((ch = fgetc(fp)) != EOF) {
 		file[i] = ch;
 		i++;
 	}
+
 	file[i] = '\0';
 	i = 0;
 	printf("%s\n", file);
+
 	while (ch != '\0') {
 		ch = file[i];
 		if ((ch == ' ')) //|| (ch=='\0'))
@@ -44,6 +49,7 @@ main() {
 		i++;
 		k++;
 	}
+
 	for (i = 0; i < j; i++) {
 		printf("%s\tfound \t%d times\n", str[i], count[i]);
 	}
