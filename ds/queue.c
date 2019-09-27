@@ -23,7 +23,7 @@ Queue *alloc_queue() {
 	return q;
 }
 
-int push(Queue *q, void *element) {
+void push(Queue *q, void *element) {
 
 	Node *new_node = (Node *) malloc(sizeof(Node));
 
@@ -37,8 +37,6 @@ int push(Queue *q, void *element) {
 
 	q->tail = new_node;
 	q->size++;
-
-	return 0;
 }
 
 void *pop(Queue *q) {
