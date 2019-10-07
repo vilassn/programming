@@ -2,12 +2,15 @@
 
 int i = 4;
 
-print() {
+int print() {
 	return i--;
 }
 
-main() {
+int main() {
 
-	print();
-	printf("%d", i);        //i=3
+	printf("%d\n", i);				//i=4
+	printf("%d\n", print());		//i=4
+	printf("%d\n", i);				//i=3
+
+	return 0;
 }

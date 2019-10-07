@@ -4,9 +4,10 @@ int i;
 
 // stack size is 8MB in linux
 void func() {
-	int j;
-	i++;
-	printf("%d at %p, &j=%p\n", i, &i, &j);
+//	int j;
+//	i++;
+//	printf("%d at %p, &j=%p\n", i, &i, &j);
+	printf("%d\n", i++);
 	func();
 }
 

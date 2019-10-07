@@ -1,6 +1,7 @@
-#include<stdio.h>
-int sp = -1, tos = 19;
+#include <stdio.h>
+
 int a[20];
+int sp = -1, tos = 19;
 
 void push(int *a, int data) {
 
