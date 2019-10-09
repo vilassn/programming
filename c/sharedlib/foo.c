@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 int foo(void) {
+
 	printf("Hello, I'm a shared library\n");
 
 	int var = 1;
