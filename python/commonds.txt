@@ -1,0 +1,26 @@
+sudo apt update
+sudo apt install python3
+sudo apt install python3-pip
+sudo cp /usr/bin/python3 /usr/bin/python
+  
+git clone https://github.com/microsoft/Olive.git
+cd Olive/
+python -m pip install .
+python -m pip install -r requirements.txt
+python -m pip uninstall -y onnxruntime ort-nightly
+pip install ort-nightly==1.16.0.dev20230701001 --extra-index-url https://aiinfra.pkgs.visualstudio.com/PublicPackages/_packaging/ORT-Nightly/pypi/simple/
+pip install onnxruntime-extensions
+pip install datasets
+pip install soundfile
+pip install librosa
+  
+cd examples/whisper
+python prepare_whisper_configs.py --model_name openai/whisper-tiny  --multilingual
+
+python -m olive.workflows.run --config whisper_cpu_int8.json --setup
+python -m olive.workflows.run --config whisper_cpu_int8.json 
+
+python test_transcription.py --config whisper_cpu_int8.json
+python test_transcription.py --config whisper_cpu_int8.json --task translate
+
+python -m onnxruntime.transformers.models.whisper.convert_to_onnx -m openai/whisper-tiny --output whisper -e
