@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import mplfinance as mpf
+
+# Simulate example price data
+np.random.seed(42)
+date_rng = pd.date_range(start='2023-01-01', end='2023-06-30', freq='D')
+price_data = np.random.randint(100, 200, size=(len(date_rng)))
+df = pd.DataFrame(price_data, columns=['Close'], index=date_rng)
+
+# Calculate fast and slow SMAs
+fast_window = 10
+slow_window = 30
+df['FastSMA'] = df['Close'].rolling(window=fast_window).mean()
+df['SlowSMA'] = df['Close'].rolling(window=slow_window).mean()
+
+# Create buy and sell signals based on crossovers
+df['Signal'] = 0  # Default no signal
+df.loc[df['FastSMA'] > df['SlowSMA'], 'Signal'] = 1  # Buy signal
+df.loc[df['FastSMA'] < df['SlowSMA'], 'Signal'] = -1  # Sell signal
+
+# Create a DataFrame for mplfinance
+ohlc_df = df[['Open', 'High', 'Low', 'Close']]
+ohlc_df.reset_index(inplace=True)
+ohlc_df['Date'] = pd.to_datetime(ohlc_df['index'])
+ohlc_df.set_index('Date', inplace=True)
+ohlc_df.drop(columns=['index'], inplace=True)
+
+# Plot the results using mplfinance
+fig, axes = mpf.plot(ohlc_df, type='candle', style='charles',
+                     title='Candlestick Chart with SMA Crossover Strategy',
+                     ylabel='Price',
+                     addplot=[mpf.make_addplot(df['FastSMA'], color='blue', linestyle='dashed'),
+                              mpf.make_addplot(df['SlowSMA'], color='orange', linestyle='dashed')],
+                     signals=[mpf.make_addplot(df['Signal'].replace(0, np.nan),
+                                                markersize=8, marker='^', color='g', panel=1),
+                              mpf.make_addplot(df['Signal'].replace(0, np.nan),
+                                                markersize=8, marker='v', color='r', panel=1)])
+
+plt.show()

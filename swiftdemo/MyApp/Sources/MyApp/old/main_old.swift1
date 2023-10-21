@@ -1,0 +1,48 @@
+// The Swift Programming Language
+// https://docs.swift.org/swift-book
+
+// main.swift
+import Foundation
+import MyFirstPackage
+import MySecondPackage
+
+func main1() {
+    // Call functions from MyFirstPackage and MySecondPackage
+    //let myValue = myFunction() // Assuming myFunction() returns a value
+    //let mySecondPackageResult = callFunctionFromFirstPackage()
+
+    // Print messages with newline characters
+    //print("Message from MyFirstPackage: \(myValue)")
+    //print("Message from MySecondPackage: \(mySecondPackageResult)\n")
+	
+	print("----------Calling MyFirstPackage function from MyApp:")
+	let myFirstPackageFunction = myFunction()
+	print("Message from MyFirstPackage: \(myFirstPackageFunction)\n")
+
+	print("----------Calling MySecondPackage function from MyApp:")
+	let mySecondPackageFunction = callFunctionFromFirstPackage()
+	print("Message from MySecondPackage: \(mySecondPackageFunction)\n")
+}
+
+func transcribe() {
+    // Initialize the ASR engine
+    let isMultilingual = true
+    let vocabPath = "your_vocab_file.txt"
+    let modelPath = "your_model_file.tflite"
+    let tfliteEngine = TFLiteEngine() // Initialize your TFLite engine class
+    do {
+        try tfliteEngine.initialize(multilingual: isMultilingual, vocabPath: vocabPath, modelPath: modelPath)
+    } catch {
+        print("Error initializing ASR engine: \(error)")
+    }
+
+    // Transcribe an audio file
+    let wavePath = "your_audio_file.wav"
+    // var wavePath: String = "your_audio_file.wav"
+    let result = tfliteEngine.getTranscription(wavePath: wavePath)
+    print("Transcription: \(result)")
+}
+
+// Entry point of the application
+main1()
+transcribe()
